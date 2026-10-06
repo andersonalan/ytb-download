@@ -1,6 +1,7 @@
 """Flask web UI for YouTube downloads."""
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 from flask import (
@@ -21,7 +22,7 @@ from downloader import (
 )
 
 app = Flask(__name__)
-app.secret_key = "ytb-download-dev-key"  # replace in production via env var
+app.secret_key = os.environ.get("SECRET_KEY", "ytb-download-dev-key")
 
 
 def list_downloads(limit: int = 20) -> list[dict]:
@@ -91,4 +92,6 @@ def serve_file(filename: str):
 
 if __name__ == "__main__":
     DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
-    app.run(debug=True, host="127.0.0.1", port=5000)
+    port = int(os.environ.get("PORT", "5000"))
+    debug = os.environ.get("FLASK_DEBUG", "1") == "1"
+    app.run(debug=debug, host="0.0.0.0", port=port)
