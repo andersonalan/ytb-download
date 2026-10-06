@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YouTube Downloader</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <h1>YouTube Downloader</h1>
+      <p>Baixe vídeos em MP4 ou extraia o áudio em MP3.</p>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="messages">
+          {% for category, message in messages %}
+            <div class="alert {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <section class="card">
+      <form action="{{ url_for('download') }}" method="post" class="form">
+        <label for="url">URL do vídeo</label>
+        <input
+          id="url"
+          name="url"
+          type="url"
+          required
+          placeholder="https://www.youtube.com/watch?v=..."
+          autocomplete="off"
+        />
+
+        <div class="row">
+          <label class="radio">
+            <input type="radio" name="format" value="mp4" checked />
+            <span>Vídeo (MP4)</span>
+          </label>
+          <label class="radio">
+            <input type="radio" name="format" value="mp3" />
+            <span>Áudio (MP3)</span>
+          </label>
+        </div>
+
+        <button type="submit">Baixar</button>
+        <p class="hint">O download pode levar alguns segundos dependendo do tamanho.</p>
+      </form>
+    </section>
+
+    {% if result %}
+      <section class="card success">
+        <h2>Pronto!</h2>
+        <p><strong>{{ result.title }}</strong></p>
+        {% if result.author %}<p class="muted">{{ result.author }}</p>{% endif %}
+        <a class="button" href="{{ url_for('serve_file', filename=result.filename) }}">
+          Salvar {{ result.filename }}
+        </a>
+      </section>
+    {% endif %}
+
+    {% if files %}
+      <section class="card">
+        <h2>Arquivos recentes</h2>
+        <ul class="files">
+          {% for f in files %}
+            <li>
+              <a href="{{ url_for('serve_file', filename=f.name) }}">{{ f.name }}</a>
+              <span class="muted">{{ f.size_mb }} MB</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+
+    <footer class="footer">
+      <span>Requer <code>ffmpeg</code> instalado no sistema.</span>
+    </footer>
+  </main>
+</body>
+</html>

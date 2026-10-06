@@ -1,0 +1,97 @@
+:root {
+  --bg: #0f1115;
+  --card: #171b22;
+  --text: #e8eaf0;
+  --muted: #9aa3b2;
+  --accent: #e62117;
+  --accent-hover: #c41a12;
+  --border: #262c36;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.hero h1 { margin: 0 0 0.25rem; }
+.hero p { margin: 0 0 1.5rem; color: var(--muted); }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.form { display: flex; flex-direction: column; gap: 0.75rem; }
+
+input[type="url"] {
+  padding: 0.7rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #0f1319;
+  color: var(--text);
+  width: 100%;
+}
+
+.row { display: flex; gap: 1rem; }
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+button, .button {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+button:hover, .button:hover { background: var(--accent-hover); }
+
+.hint, .muted { color: var(--muted); font-size: 0.9rem; }
+
+.messages { margin-bottom: 1rem; }
+.alert {
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+.alert.error { background: #3a1a1a; border: 1px solid #7a2b2b; }
+.alert.success { background: #14331f; border: 1px solid #256b3a; }
+
+.success h2 { margin-top: 0; }
+
+.files { list-style: none; margin: 0; padding: 0; }
+.files li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.files li:last-child { border-bottom: none; }
+.files a { color: var(--text); }
+
+.footer { color: var(--muted); font-size: 0.85rem; text-align: center; }
+code { background: #0f1319; padding: 0.1rem 0.35rem; border-radius: 4px; }
