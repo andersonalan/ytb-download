@@ -94,4 +94,5 @@ button:hover, .button:hover { background: var(--accent-hover); }
 .files a { color: var(--text); }
 
 .footer { color: var(--muted); font-size: 0.85rem; text-align: center; }
+.footer a { color: var(--text); }
 code { background: #0f1319; padding: 0.1rem 0.35rem; border-radius: 4px; }
