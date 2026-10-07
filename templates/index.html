@@ -4,12 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>YTB Download</title>
+  <link rel="icon" href="{{ url_for('static', filename='logo_ytb.png') }}" type="image/png" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
   <main class="container">
     <header class="hero">
-      <h1>YTB Download</h1>
+      <h1 class="brand-wrap">
+        <img src="{{ url_for('static', filename='ytb.png') }}" alt="YTB Download" class="brand" />
+      </h1>
       <p>Baixe vídeos em MP4 ou extraia o áudio em MP3.</p>
     </header>
 
